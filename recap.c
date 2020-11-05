@@ -79,3 +79,35 @@ void recoverImages(FILE *diskImage) {
         bytesRead = fread(block, BYTE_SIZE, BYTE_COUNT, diskImage);
     }
 }
+
+/*
+ * NAME: isImageStart
+ * IMPORT(S): block[] (BYTE)
+ * EXPORT(S): NONE
+ * PURPOSE: Checks if block contains JPG signature
+ * CREATION: 05/02/2020
+ * LAST MODIFICATION: 05/11/2020
+ */
+
+int isImageStart(BYTE block[]) {
+    int isImageStart;
+
+    BYTE byte0, byte1, byte2, byte3;
+
+    byte0 = block[0];
+    byte1 = block[1];
+    byte2 = block[2];
+    byte3 = block[3];
+
+    if ((byte1 == 0xff) && 
+        (byte2 == 0xd8) && 
+        (byte3 == 0xff) && 
+        ((byte3 & 0xf0) == 0xe0)) {
+        isImageStart = TRUE;
+    }
+    else {
+        isImageStart = FALSE;
+    }
+
+    return isImageStart;
+}

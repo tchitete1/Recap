@@ -1,7 +1,7 @@
 /*
  * NAME: recap.c
  * CREATOR: Tanaka Chitete
- * PURPOSE: Recover "deleted" JPG images from a disk image
+ * PURPOSE: Recover "deleted" JPGs from a disk image
  * CREATION: 03/02/2020
  * LAST MODIFICATION: 05/11/2020
  */
@@ -26,7 +26,7 @@
  * NAME: recoverImages
  * IMPORT(S): diskImage (FILE*)
  * EXPORT(S): NONE
- * PURPOSE: Recover "deleted" JPEGs from a disk image
+ * PURPOSE: Recover "deleted" JPGs from a disk image
  * CREATION: 03/02/2020
  * LAST MODIFICATION: 05/11/2020
  */
@@ -38,7 +38,7 @@ void recoverImages(FILE *diskImage) {
     int fileNumber, foundFile;
     size_t bytesRead;
 
-    /* Reads disk image contents and writes them to JPEGs */
+    /* Reads disk image contents and writes them to JPGs */
     fileNumber = 0;
     foundFile = FALSE;
     bytesRead = fread(block, BYTE_SIZE, BYTE_COUNT, diskImage);
@@ -55,7 +55,7 @@ void recoverImages(FILE *diskImage) {
                 /* Closes current file as recovery is finished */
                 fclose(JPG);
 
-                /* Creates new file name for next JPEG to recover */
+                /* Creates new file name for next JPG to recover */
                 fileNumber++;
                 sprintf(fileName, "%03i.jpg", fileNumber);
             }
